@@ -10,6 +10,10 @@ import AdvancedTable from '../components/tables/AdvancedTables';
 import AsynchronousTable from '../components/tables/AsynchronousTable';
 import Echarts from '../components/charts/Echarts';
 import Recharts from '../components/charts/Recharts';
+import SyllabuxEcharts from '../components/charts/SyllabuxEcharts';
+import StudentTable from '../components/tables/StudentTable';
+import TeacherTable from '../components/tables/TeacherTable';
+import PackageTable from '../components/tables/PackageTable';
 import Icons from '../components/ui/Icons';
 import Buttons from '../components/ui/Buttons';
 import Spins from '../components/ui/Spins';
@@ -73,6 +77,11 @@ export default class CRouter extends Component {
                 <Route exact path="/app/auth/routerEnter" component={(props) => this.requireAuth('auth/testPage', <RouterEnter {...props} />)} />
 
                 <Route exact path="/app/cssModule" component={Cssmodule} />
+
+                <Route exact path="/app/management/syllabux" component={SyllabuxEcharts} />
+                <Route exact path="/app/management/student" component={StudentTable} />
+                <Route exact path="/app/management/teacher" component={TeacherTable} />
+                <Route exact path="/app/management/package" component={PackageTable} />
 
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>

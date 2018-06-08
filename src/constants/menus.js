@@ -61,4 +61,44 @@ export const menus = [
     {
         key: '/app/cssModule', title: 'cssModule', icon: 'star',
     },
+    {
+        key: '/app/management', title: '系统管理', icon: 'star',
+        sub: [
+            { key: '/app/management/syllabux', title: '课表管理', icon: '', },
+            { key: '/app/management/class', title: '课程管理', icon: '', },
+            { key: '/app/management/student', title: '学生管理', icon: '', },
+            { key: '/app/management/teacher', title: '教师管理', icon: '', },
+            { key: '/app/management/package', title: '套餐管理', icon: '', },
+            { key: '/app/management/discount', title: '优惠策略', icon: '', },
+        ],
+    },
+    {
+        key: '/app/attendance', tile: '考勤管理', icon: 'star',
+        sub: [
+            { key: '/app/attendance/teacher', title: '教师考勤', icon: '', },
+            { key: '/app/attendance/student', title: '学生考勤', icon: '', },
+        ]
+    },
+    {
+        key: '/app/quality', title: '质量管理', icon: 'star',
+        sub: [
+            { key: '/app/quality/teacher', title: '教学总结', icon: '', },
+            { key: '/app/quality/student', title: '巡查抽查', icon: '', },
+        ]
+    },
+    {
+        key: '/app/finance', tile: '财务管理', icon: 'star',
+        sub: [
+            { key: '/app/finance/price', title: '价格管理', icon: '', },
+            { key: '/app/finance/cost', title: '成本管理', icon: '', },
+            { key: '/app/finance/details', title: '财务明细', icon: '', },
+        ]
+    },
+    {
+        key: '/app/compete', tile: '竞争分析', icon: 'star',
+        sub: [
+            { key: '/app/compete/opponent', title: '对手情报', icon: '', },
+            { key: '/app/compete/region', title: '区域分析', icon: '', },
+        ]
+    }
 ];
