@@ -92,7 +92,7 @@ class HeaderCustom extends Component {
                         />
                     )
                 }
-                <Menu
+                {/* <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
                     onClick={this.menuClick}
@@ -116,7 +116,7 @@ class HeaderCustom extends Component {
                             <Menu.Item key="setting:4">系统设置</Menu.Item>
                         </MenuItemGroup>
                     </SubMenu>
-                </Menu>
+                </Menu> */}
                 <style>{`
                     .ant-menu-submenu-horizontal > .ant-menu {
                         width: 120px;

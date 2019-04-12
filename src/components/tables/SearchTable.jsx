@@ -6,24 +6,9 @@ import { Table, Input, Button, Icon } from 'antd';
 
 const data = [{
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-}, {
-    key: '2',
-    name: 'Joe Black',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-}, {
-    key: '3',
-    name: 'Jim Green',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-}, {
-    key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
+    name: 'regionone',
+    type: 'ovs',
+    desc: 'for test',
 }];
 
 class SearchTable extends React.Component {
@@ -62,7 +47,7 @@ class SearchTable extends React.Component {
     };
     render() {
         const columns = [{
-            title: 'Name',
+            title: '名称',
             dataIndex: 'name',
             key: 'name',
             filterDropdown: (
@@ -81,13 +66,13 @@ class SearchTable extends React.Component {
             filterDropdownVisible: this.state.filterDropdownVisible,
             onFilterDropdownVisibleChange: visible => this.setState({ filterDropdownVisible: visible }, () => this.searchInput.focus()),
         }, {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: '类型',
+            dataIndex: 'type',
+            key: 'type',
         }, {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            title: '描述',
+            dataIndex: 'desc',
+            key: 'desc',
             filters: [{
                 text: 'London',
                 value: 'London',

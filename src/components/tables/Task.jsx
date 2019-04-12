@@ -15,7 +15,7 @@ const Option = Select.Option;
 //     desc: 'for test',
 // }];
 
-class SortTable extends React.Component {
+class TaskTable extends React.Component {
     state = {
         filteredInfo: null,
         sortedInfo: null,
@@ -23,14 +23,11 @@ class SortTable extends React.Component {
         loading: true,
         data: [],
     };
-    modalConf = {
-        maskClosable: false,
-        destroyOnClose: true,
-    }
+    
     componentDidMount = () => {
         let that = this;
         $.get(
-            '/api/controller_get',
+            '/api/task_get',
             function(res){
                 console.info(res)
                 that.setState({data:eval(res)})
@@ -88,7 +85,6 @@ class SortTable extends React.Component {
         
     }
     render() {
-        const { getFieldDecorator } = this.props.form
         let { sortedInfo, filteredInfo } = this.state;
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
@@ -111,9 +107,47 @@ class SortTable extends React.Component {
             sorter: (a, b) => a.age - b.age,
             sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
         }, {
-            title: '描述',
-            dataIndex: 'description',
-            key: 'description',
+            title: '时间',
+            dataIndex: 'start_time',
+            key: 'start_time',
+            filters: [
+                { text: 'London', value: 'London' },
+                { text: 'New York', value: 'New York' },
+            ],
+            filteredValue: filteredInfo.address || null,
+            onFilter: (value, record) => record.address.includes(value),
+            sorter: (a, b) => a.address.length - b.address.length,
+            sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
+        }, {
+            title: '下次运行时间',
+            dataIndex: 'next_run_time',
+            key: 'next_run_time',
+            filters: [
+                { text: 'London', value: 'London' },
+                { text: 'New York', value: 'New York' },
+            ],
+            filteredValue: filteredInfo.address || null,
+            onFilter: (value, record) => record.address.includes(value),
+            sorter: (a, b) => a.address.length - b.address.length,
+            sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
+        }, {
+            title: '并发数',
+            dataIndex: 'async',
+            key: 'async',
+            key: 'async',
+            filters: [
+                { text: 'London', value: 'London' },
+                { text: 'New York', value: 'New York' },
+            ],
+            filteredValue: filteredInfo.address || null,
+            onFilter: (value, record) => record.address.includes(value),
+            sorter: (a, b) => a.address.length - b.address.length,
+            sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
+        }, {
+            title: '丢失数',
+            dataIndex: 'async',
+            key: 'async',
+            key: 'async',
             filters: [
                 { text: 'London', value: 'London' },
                 { text: 'New York', value: 'New York' },
@@ -125,32 +159,10 @@ class SortTable extends React.Component {
         }];        
         return (
             <div>
-                <div className="table-operations">
-                    <Button icon="plus" style={{ marginBottom: 16 }} onClick={this.showModal}>添加</Button>
-                </div>
                 <Table columns={columns} loading={this.state.loading} dataSource={this.state.data} onChange={this.handleChange} />
-                <Modal maskClosable={this.modalConf.maskClosable} destroyOnClose={this.modalConf.destroyOnClose} title="新增控制器" visible={this.state.visible} onCancel={this.hideModal} onOk={this.submitAdd} okText="确认" cancelText="取消">
-                 <Form layout="vertical">
-                     <FormItem label="名称">
-                        {getFieldDecorator('name', {'initialValue':'newname'})(<Input />)}
-                     </FormItem>
-                     <FormItem label="类别">
-                     {getFieldDecorator('type', {'initialValue':'1'})(
-                     <Select>
-                            <Option value="1">ovn</Option>
-                    </Select>
-                    )}
-                        
-                     </FormItem>
-                     <FormItem label="地址">
-                     {getFieldDecorator('nb', {'initialValue':'127.0.0.1'})(<Input addonBefore="nb" addonAfter="6641" />)}
-                     {getFieldDecorator('sb', {'initialValue':'127.0.0.1'})(<Input addonBefore="sb" addonAfter="6642" />)}
-                     </FormItem>
-                 </Form>
-             </Modal>
             </div>
         );
     }
 }
 
-export default Form.create()(SortTable);
+export default Form.create()(TaskTable);

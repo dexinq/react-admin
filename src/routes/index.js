@@ -9,6 +9,7 @@ import BasicTable from '../components/tables/BasicTables';
 import AdvancedTable from '../components/tables/AdvancedTables';
 import AsynchronousTable from '../components/tables/AsynchronousTable';
 import Echarts from '../components/charts/Echarts';
+import dashboard from '../components/charts/dashboard';
 import Recharts from '../components/charts/Recharts';
 import SyllabuxEcharts from '../components/charts/SyllabuxEcharts';
 import StudentTable from '../components/tables/StudentTable';
@@ -23,6 +24,7 @@ import Tabs from '../components/ui/Tabs';
 import Banners from '../components/ui/banners';
 import Drags from '../components/ui/Draggable';
 import Dashboard from '../components/dashboard/Dashboard';
+import TaskMangement from '../components/tables/TaskMangement';
 import Gallery from '../components/ui/Gallery';
 import BasicAnimations from '../components/animation/BasicAnimations';
 import ExampleAnimations from '../components/animation/ExampleAnimations';
@@ -50,12 +52,17 @@ export default class CRouter extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/app/dashboard/index" component={Dashboard} />
+                <Route exact path="/app/dashboard/index" component={Echarts} />
+                <Route exact path="/app/basic/topo" component={Echarts} />
                 <Route exact path="/app/form/basicForm" component={BasicForm} />
                 <Route exact path="/app/table/basicTable" component={BasicTable} />
+                <Route exact path="/app/basic/controllerList" component={BasicTable} />
                 <Route exact path="/app/table/advancedTable" component={AdvancedTable} />
+                <Route exact path="/app/basic/deviceList" component={AdvancedTable} />
                 <Route exact path="/app/table/asynchronousTable" component={AsynchronousTable} />
-                <Route exact path="/app/chart/echarts" component={Echarts} />
+                <Route exact path="/app/chart/echarts" component={dashboard} />
+                <Route exact path="/app/basic/dashboard" component={dashboard} />
+                <Route exact path="/app/data/task" component={TaskMangement} />
                 <Route exact path="/app/chart/recharts" component={Recharts} />
 
                 <Route exact path="/app/ui/icons" component={Icons} />
