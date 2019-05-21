@@ -4,8 +4,19 @@ export const menus = [
         key: '/app/basic', title: '基础', icon: 'scan',
         sub: [
             { key: '/app/basic/topo', title: '拓扑', icon: '', },
+
+            { key: '/app/basic/real_network', title: '物理网', icon: '', },
             { key: '/app/basic/controllerList', title: '控制器', icon: '', },
+        ],
+    },
+    { key: '/app/basic/vnetwork', title: '虚拟网', icon: 'scan',
+        sub: [
             { key: '/app/basic/deviceList', title: '设备列表', icon: '', },
+            { key: '/app/basic/virtual_network?region=b28-2', title: 'b28-2', icon: '', },
+            { key: '/app/basic/virtual_network?region=b28-3', title: 'b28-3', icon: '', },
+            { key: '/app/basic/virtual_network?region=dz8-1', title: 'dz8-1', icon: '', },
+            { key: '/app/basic/virtual_network?region=RegionOne', title: 'RegionOne', icon: '', },
+            { key: '/app/basic/virtual_network?region=RegionTwo', title: 'RegionTwo', icon: '', },
         ],
     },
     {
@@ -17,7 +28,9 @@ export const menus = [
     {
         key: '/app/controll', title: '控制', icon: 'scan',
         sub: [
-            
+            {key: '/app/controll/acl', title: 'acl', icon: '',},
+            {key: '/app/controll/qos', title: 'qos', icon: '',},
+            {key: '/app/controll/loadbalance', title: 'loadbalance', icon: '',},
         ],
     },
     // {

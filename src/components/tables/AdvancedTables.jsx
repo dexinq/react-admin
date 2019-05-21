@@ -21,22 +21,7 @@ class AdvancedTables extends React.Component {
                         </div>
                     </Col>
                 </Row>
-                {/* <Row gutter={16}>
-                    <Col className="gutter-row" md={12}>
-                        <div className="gutter-box">
-                            <Card title="可展开" bordered={false}>
-                                <ExpandedTable />
-                            </Card>
-                        </div>
-                    </Col>
-                    <Col className="gutter-row" md={12}>
-                        <div className="gutter-box">
-                            <Card title="可编辑" bordered={false}>
-                                <EditableTable />
-                            </Card>
-                        </div>
-                    </Col>
-                </Row> */}
+
             </div>
         );
     }

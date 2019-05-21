@@ -114,10 +114,6 @@ class SortTable extends React.Component {
             title: '描述',
             dataIndex: 'description',
             key: 'description',
-            filters: [
-                { text: 'London', value: 'London' },
-                { text: 'New York', value: 'New York' },
-            ],
             filteredValue: filteredInfo.address || null,
             onFilter: (value, record) => record.address.includes(value),
             sorter: (a, b) => a.address.length - b.address.length,

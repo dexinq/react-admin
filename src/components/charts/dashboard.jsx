@@ -6,10 +6,12 @@ import { Row, Col, Card } from 'antd';
 import EchartsArea from './EchartsArea';
 import EchartsPie from './EchartsPie';
 import TopTraffic from './topTraffic';
+import ipTraffic from './ipTraffic';
+import UcarTraffic from './UcarTraffic';
 import EchartsEffectScatter from './EchartsEffectScatter';
 import EchartsForce from './EchartsForce';
 
-class TaskMangementEcharts extends React.Component {
+class UcarDashboard extends React.Component {
     render() {
         return (
             <div className="gutter-example">
@@ -33,24 +35,42 @@ class TaskMangementEcharts extends React.Component {
                     </Col>
                     <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
-                            <Card title="流量top10" bordered={false}>
+                            <Card title="ip池" bordered={false}>
+                                <ipTraffic />
+                            </Card>
+                        </div>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col className="gutter-row" md={12}>
+                        <div className="gutter-box">
+                            <Card title="24h 虚机流量top10" bordered={false}>
+                                <TopTraffic />
+                            </Card>
+                        </div>
+                    </Col>
+
+                    <Col className="gutter-row" md={12}>
+                        <div className="gutter-box">
+                            <Card title="24h 业务线流量top10" bordered={false}>
                                 <TopTraffic />
                             </Card>
                         </div>
                     </Col>
                 </Row>
-                {/* <Row gutter={16}>
+
+                <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
-                            <Card title="散点图" bordered={false}>
-                                <EchartsEffectScatter />
+                            <Card title="总流量" bordered={false}>
+                                <UcarTraffic />
                             </Card>
                         </div>
                     </Col>
-                </Row> */}
+                </Row>
             </div>
         )
     }
 }
 
-export default Echarts;
+export default UcarDashboard;

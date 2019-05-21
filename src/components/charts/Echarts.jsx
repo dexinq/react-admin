@@ -9,6 +9,7 @@ import EchartsEffectScatter from './EchartsEffectScatter';
 import EchartsForce from './EchartsForce';
 
 class Echarts extends React.Component {
+
     render() {
         return (
             <div className="gutter-example">
