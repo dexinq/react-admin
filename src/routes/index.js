@@ -25,6 +25,7 @@ import Tabs from '../components/ui/Tabs';
 import Banners from '../components/ui/banners';
 import Drags from '../components/ui/Draggable';
 import Dashboard from '../components/dashboard/Dashboard';
+import UcarRegionDevice from '../components/tables/UcarRegionDevice'
 import TaskMangement from '../components/tables/TaskMangement';
 import Gallery from '../components/ui/Gallery';
 import BasicAnimations from '../components/animation/BasicAnimations';
@@ -55,6 +56,8 @@ export default class CRouter extends Component {
             <Switch>
                 <Route exact path="/app/dashboard/index" component={UcarDashboard} />
                 <Route exact path="/app/device/index/:uuid/:name" component={UcarDeviceDashboard} />
+
+                <Route exact path="/app/basic/index/virtual_network/:name" component={UcarRegionDevice} />
 
                 <Route exact path="/app/basic/topo" component={Echarts} />
                 <Route exact path="/app/form/basicForm" component={BasicForm} />
