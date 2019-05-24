@@ -55,9 +55,9 @@ export default class CRouter extends Component {
         return (
             <Switch>
                 <Route exact path="/app/dashboard/index" component={UcarDashboard} />
-                <Route exact path="/app/device/index/:uuid/:name" component={UcarDeviceDashboard} />
+                <Route exact path="/app/device/index/:hostname/:ip" component={UcarDeviceDashboard} />
 
-                <Route exact path="/app/basic/index/virtual_network/:name" component={UcarRegionDevice} />
+                <Route exact path="/app/basic/virtual_network/:region" component={UcarRegionDevice} />
 
                 <Route exact path="/app/basic/topo" component={Echarts} />
                 <Route exact path="/app/form/basicForm" component={BasicForm} />

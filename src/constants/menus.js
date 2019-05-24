@@ -12,11 +12,11 @@ export const menus = [
     { key: '/app/basic/vnetwork', title: '虚拟网', icon: 'scan',
         sub: [
             { key: '/app/basic/deviceList', title: '设备列表', icon: '', },
-            { key: '/app/basic/virtual_network?region=b28-2', title: 'b28-2', icon: '', },
-            { key: '/app/basic/virtual_network?region=b28-3', title: 'b28-3', icon: '', },
-            { key: '/app/basic/virtual_network?region=dz8-1', title: 'dz8-1', icon: '', },
-            { key: '/app/basic/virtual_network?region=RegionOne', title: 'RegionOne', icon: '', },
-            { key: '/app/basic/virtual_network?region=RegionTwo', title: 'RegionTwo', icon: '', },
+            { key: '/app/basic/virtual_network/b28-2', title: 'b28-2', icon: '', },
+            { key: '/app/basic/virtual_network/b28-3', title: 'b28-3', icon: '', },
+            { key: '/app/basic/virtual_network/dz8-1', title: 'dz8-1', icon: '', },
+            { key: '/app/basic/virtual_network/RegionOne', title: 'RegionOne', icon: '', },
+            { key: '/app/basic/virtual_network/RegionTwo', title: 'RegionTwo', icon: '', },
         ],
     },
     {

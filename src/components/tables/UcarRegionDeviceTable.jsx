@@ -14,7 +14,7 @@ class UcarRegionDeviceTable extends React.Component {
             title: '操作',
             key: 'operation',
             
-            render: (text, record) => <a href={"/#/app/device/index/"+record.key+"/"+record.name}>详细信息</a>,
+            render: (text, record) => <a href={"/#/app/device/index/"+record.hostname+"/"+record.ip}>详细信息</a>,
         },],
         data: [{
 
@@ -25,7 +25,7 @@ class UcarRegionDeviceTable extends React.Component {
         let name = this.props.region;
 
         $.get(
-            "/api/get_chassis_info_by_region?region="+name,
+            "/api/get_region_device_info?region="+name,
             function(r){
 
                 let res = eval(r);

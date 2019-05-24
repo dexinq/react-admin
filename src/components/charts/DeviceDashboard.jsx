@@ -11,8 +11,8 @@ import $ from 'jquery';
 class UcarDeviceDashboard extends React.Component {
     constructor(props){
         super(props);
-        this.uuid = this.props.match.params.uuid;
-        this.name = this.props.match.params.name;
+        this.ip = this.props.match.params.ip;
+        this.hostname = this.props.match.params.hostname;
         this.state = {monitor:true};
     };
     componentDidMount() {
