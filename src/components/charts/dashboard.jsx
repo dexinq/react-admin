@@ -25,7 +25,6 @@ class UcarDashboard extends React.Component {
                     </Col>
                 </Row> */}
                 <Row gutter={16}>
-                    
                     <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
                             <Card title="设备统计" bordered={false}>
