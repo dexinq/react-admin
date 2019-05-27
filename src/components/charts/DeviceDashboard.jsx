@@ -5,7 +5,7 @@ import React from 'react';
 import { Row, Col, Card, Button } from 'antd';
 import UcarTraffic from "./UcarTraffic";
 import FlowTraffic from "./FlowTraffic";
-import UcarVirtualDevicePortTable from '../tables/UcarPortACL'
+import UcarVirtualDevicePortTable from '../tables/UcarVirtualDevicePortTable'
 import $ from 'jquery';
 import EchartsPie from "./EchartsPie";
 
@@ -18,7 +18,17 @@ class UcarDeviceDashboard extends React.Component {
         this.state = {monitor:true};
     };
 
+    componentDidMount(){
+        $.get(
+            "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip,
+            function(r){
 
+                let res = eval(r);
+
+                this.setState({data:res, loading: false})
+            }.bind(this)
+        );
+    };
 
     render() {
         return (
@@ -47,7 +57,7 @@ class UcarDeviceDashboard extends React.Component {
                     <Col className="gutter-row" >
                         <div className="gutter-box">
                             <Card title="端口列表" bordered={false}>
-                                <UcarVirtualDevicePortTable />
+                                <UcarVirtualDevicePortTable data={this.data["port_info"]}/>
                             </Card>
                         </div>
                     </Col>

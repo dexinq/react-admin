@@ -26,15 +26,7 @@ class UcarPortACL extends React.Component {
     componentDidMount(){
         let name = this.props.region;
 
-        // $.get(
-        //     "/api/get_region_device_info?region="+name,
-        //     function(r){
-        //
-        //         let res = eval(r);
-        //
-        //         this.setState({data:res, loading: false})
-        //     }.bind(this)
-        // );
+
 
     }
     render() {

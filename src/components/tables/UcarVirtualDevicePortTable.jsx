@@ -6,16 +6,21 @@ import { Table } from 'antd';
 import $ from 'jquery';
 
 class UcarVirtualDevicePortTable extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.setState({data:props.data})
+    }
+
     state = {
-        columns:[{ title: 'id', dataIndex: 'uuid', key: 'uuid' },
-        { title: '名称', dataIndex: 'hostname', key: 'hostname' },
-        { title: 'mac地址', dataIndex: 'mac', key: 'mac' },
-        { title: 'ip地址', dataIndex: 'ip', key: 'ip' },
+        columns:[{ title: 'id', dataIndex: 'p_uuid', key: 'p_uuid' },
+        { title: '名称', dataIndex: 'p_name', key: 'p_name' },
+        { title: 'mac地址', dataIndex: 'p_mac', key: 'p_mac' },
+        { title: 'ip地址', dataIndex: 'p_ip', key: 'p_ip' },
         {
             title: '操作',
             key: 'operation',
             
-            render: (text, record) => <a href={"/#/app/device/index/"+record.hostname+"/"+record.ip}>详细信息</a>,
+            render: (text, record) => <a href={"/#/app/device/index/"+record.p_name+"/"+record.p_ip}>详细信息</a>,
         },],
         data: [{
 
@@ -37,7 +42,7 @@ class UcarVirtualDevicePortTable extends React.Component {
 
     }
     render() {
-        return (<Table columns={this.state.columns} loading={this.state.loading} dataSource={this.state.data} />)
+        return (<Table columns={this.state.columns} dataSource={this.state.data} />)
     }
 }
 
