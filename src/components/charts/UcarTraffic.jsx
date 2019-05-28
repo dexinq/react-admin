@@ -10,15 +10,15 @@ class UcarTraffic extends Component {
     }
 
     componentDidMount(){
-        $.get(
-            "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip+"&data_p=traffic",
-            function(r){
-
-                let res = eval(r);
-
-                this.setState({data:res, loading: false})
-            }.bind(this)
-        );
+        // $.get(
+        //     "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip+"&data_p=traffic",
+        //     function(r){
+        //
+        //         let res = eval(r);
+        //
+        //         this.setState({data:res, loading: false})
+        //     }.bind(this)
+        // );
     };
 
     getOptions(){
