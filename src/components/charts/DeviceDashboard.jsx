@@ -7,7 +7,9 @@ import UcarTraffic from "./UcarTraffic";
 import FlowTraffic from "./FlowTraffic";
 import UcarVirtualDevicePortTable from '../tables/UcarVirtualDevicePortTable'
 import $ from 'jquery';
+import UcarTopTalkers from './UcarTopTalkers'
 import EchartsPie from "./EchartsPie";
+import UcarTrafficComposit from "./UcarTrafficComposit";
 
 
 class UcarDeviceDashboard extends React.Component {
@@ -33,35 +35,42 @@ class UcarDeviceDashboard extends React.Component {
     render() {
         return (
             <div className="gutter-example">
-
-                <Row gutter={16}>
-                    <Col className="gutter-row" md={24}>
-                        <div className="gutter-box">
-                            <Card title="出口(em2)入流量统计" bordered={false}>
-                                <UcarTraffic />
-                            </Card>
-                        </div>
-                    </Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col className="gutter-row" md={24}>
-                        <div className="gutter-box">
-                            <Card title="出口(em2)出流量统计" bordered={false}>
-                                <UcarTraffic />
-                            </Card>
-                        </div>
-                    </Col>
-                </Row>
-
                 <Row gutter={16}>
                     <Col className="gutter-row" >
                         <div className="gutter-box">
                             <Card title="端口列表" bordered={false}>
-                                <UcarVirtualDevicePortTable data={this.data["port_info"]}/>
+                                <UcarVirtualDevicePortTable hostname={this.hostname} ip={this.ip}/>
                             </Card>
                         </div>
                     </Col>
                 </Row>
+                <Row gutter={16}>
+                    <Col className="gutter-row" md={24}>
+                        <div className="gutter-box">
+                            <Card title="上行端口流量" bordered={false}>
+                                <UcarTraffic />
+                            </Card>
+                        </div>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col className="gutter-row" md={12}>
+                        <div className="gutter-box">
+                            <Card title="1h top talkers" bordered={false}>
+                                <UcarTopTalkers />
+                            </Card>
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" md={12}>
+                        <div className="gutter-box">
+                            <Card title="1h 流量分类统计" bordered={false}>
+                                <UcarTrafficComposit />
+                            </Card>
+                        </div>
+                    </Col>
+                </Row>
+
+
             </div>
         )
     }

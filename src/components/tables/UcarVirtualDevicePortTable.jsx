@@ -8,7 +8,8 @@ import $ from 'jquery';
 class UcarVirtualDevicePortTable extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.setState({data:props.data})
+        this.hostname = props.hostname;
+        this.ip = props.ip;
     }
 
     state = {
@@ -30,19 +31,19 @@ class UcarVirtualDevicePortTable extends React.Component {
     componentDidMount(){
         let name = this.props.region;
 
-        // $.get(
-        //     "/api/get_region_device_info?region="+name,
-        //     function(r){
-        //
-        //         let res = eval(r);
-        //
-        //         this.setState({data:res, loading: false})
-        //     }.bind(this)
-        // );
+        $.get(
+            "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip+"&data_p=port",
+            function(r){
+
+                let res = eval(r);
+
+                this.setState({data:res, loading: false})
+            }.bind(this)
+        );
 
     }
     render() {
-        return (<Table columns={this.state.columns} dataSource={this.state.data} />)
+        return (<Table columns={this.state.columns} loading={this.state.loading} dataSource={this.state.data} />)
     }
 }
 
