@@ -8,28 +8,7 @@ class UcarTopTalkers extends Component {
 
     constructor(props){
         super(props);
-        this.state={
-            loadingChart:true,
-            data:[],
-            links:[]
-        }
-    }
-    componentDidMount(){
-
-        $.get(
-            "/api/get_top_talker",
-            function (r) {
-                let res = JSON.parse(r);
-                this.setState({data: res["data"]});
-                this.setState({links: res["links"]});
-                this.setState({loadingChart: false});
-            }.bind(this)
-        )
-
-    };
-
-    getOption=()=>{
-        return{
+        this.option = {
             tooltip: {
                 trigger: 'item',
                 triggerOn: 'mousemove'
@@ -38,8 +17,8 @@ class UcarTopTalkers extends Component {
                 type: 'sankey',
                 layout: 'none',
                 focusNodeAdjacency: 'allEdges',
-                data: this.state.data,
-                links: this.state.links,
+                data: [],
+                links: [],
                 itemStyle: {
                     normal: {
                         borderWidth: 1,
@@ -53,16 +32,42 @@ class UcarTopTalkers extends Component {
                     }
                 }
             }
+        };
+        this.state={
+            loadingChart:true,
+            option:this.option
         }
+    }
+    componentDidMount(){
+        let echarts = this.refs.echarts.getEchartsInstance();
+        $.get(
+            "/api/get_top_talker",
+            function (r) {
+                let res = JSON.parse(r);
+                let data = JSON.parse(res);
+                this.option.series.data = data.data;
+                this.option.series.links = data.links;
+                this.setState({loadingChart: false});
+                this.setState({option:this.option});
+            }.bind(this)
+        );
+
+        echarts.setOption(this.state.option);
+    };
+
+    getOption=()=>{
+        return this.option;
     };
 
     render() {
         return (
             <ReactEcharts
+                ref='echarts'
                 option={this.getOption()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
                 showLoading={this.state.loadingChart}
+                notMerge={true}
             />
         )
     }
