@@ -17,8 +17,8 @@ class UcarTopTalkers extends Component {
                 type: 'sankey',
                 layout: 'none',
                 focusNodeAdjacency: 'allEdges',
-                data: [],
-                links: [],
+                data: [{}],
+                links: [{}],
                 itemStyle: {
                     normal: {
                         borderWidth: 1,

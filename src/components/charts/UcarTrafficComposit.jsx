@@ -6,16 +6,7 @@ import $ from 'jquery';
 class UcarTrafficComposit extends Component {
     constructor(props) {
         super(props);
-
-    }
-
-    componentDidMount(){
-
-    };
-
-    getOptions(){
-
-        let option = {
+        this.option = {
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -23,7 +14,7 @@ class UcarTrafficComposit extends Component {
             legend: {
                 orient: 'vertical',
                 x: 'left',
-                data:['7275', '123', '31750', '20000', '3695', '12681', '6129', '33177', '52049', '59283']
+                data:[]
             },
             series: [
 
@@ -37,30 +28,50 @@ class UcarTrafficComposit extends Component {
                         }
                     },
                     data:[
-                        {value:512034, name:'7275'},
-                        {value:289800, name:'123'},
-                        {value:216937, name:'31750'},
-                        {value:191166, name:'20000'},
-                        {value:85561, name:'3695'},
-                        {value:17686, name:'12681'},
-                        {value:6144, name:'6129'},
-                        {value:6047, name:'33177'},
-                        {value:5982, name:'52049'},
-                        {value:5864, name:'59283'}
+                        {}
                     ]
                 }
             ]
         };
-        return option;
+        this.state={
+            loadingChart:true,
+            option:this.option
+        }
+    }
+
+
+    componentDidMount(){
+        let echarts = this.refs.echarts.getEchartsInstance();
+        $.get(
+            "/api/get_port_static",
+            function (r) {
+                let data = JSON.parse(r);
+                this.option.legend.data = data["legend_list"];
+                this.option.series.data = data["data"];
+                this.setState({loadingChart: false});
+                this.setState({option:this.option});
+            }.bind(this)
+        );
+
+        echarts.setOption(this.state.option);
+    };
+
+    getOption(){
+
+        return this.option;
 
     }
 
     render() {
         return (
             <ReactEcharts
-                option={this.getOptions()}
+                ref='echarts'
+                option={this.getOption()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
+                showLoading={this.state.loadingChart}
+                lazyUpdate={true}
+                notMerge={true}
             />
         )
     }
