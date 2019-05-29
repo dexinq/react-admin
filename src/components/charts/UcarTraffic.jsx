@@ -6,24 +6,7 @@ import $ from 'jquery';
 class UcarTraffic extends Component {
     constructor(props) {
         super(props);
-
-    }
-
-    componentDidMount(){
-        // $.get(
-        //     "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip+"&data_p=traffic",
-        //     function(r){
-        //
-        //         let res = eval(r);
-        //
-        //         this.setState({data:res, loading: false})
-        //     }.bind(this)
-        // );
-    };
-
-    getOptions(){
-
-        let option = {
+        this.option = {
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -39,8 +22,7 @@ class UcarTraffic extends Component {
             },
             xAxis: [
                 {
-                    type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    type: 'time',
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -50,18 +32,14 @@ class UcarTraffic extends Component {
                 {
                     type: 'value',
                     name: '入流量',
-                    min: 0,
-                    max: 250,
-                    interval: 50,
+
                     axisLabel: {
                         formatter: '{value} Bytes'
                     }
                 },{
                     type: 'value',
                     name: '出流量',
-                    min: 0,
-                    max: 250,
-                    interval: 50,
+
                     axisLabel: {
                         formatter: '{value} Bytes'
                     }
@@ -85,31 +63,71 @@ class UcarTraffic extends Component {
                 }
             }],
             series: [
-
                 {
                     name:'出流量',
                     type:'line',
                     stack: '总量',
-                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                    data:[]
                 },
                 {
                     name:'入流量',
                     type:'line',
                     yAxisIndex: 1,
-                    data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                    data:[]
                 }
             ]
         };
-        return option;
+        this.state = {
+            option: this.option,
+            loadingChart: true
+        }
+
+    }
+
+    componentDidMount(){
+        let echarts = this.refs.echarts.getEchartsInstance();
+        $.get(
+            "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip+"&data_p=traffic",
+            function(r){
+                let res = JSON.parse(r);
+
+                let in_traffic = {
+                    name:'入流量',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:res["traffic_in"]
+                };
+                this.option.series.push(in_traffic);
+
+                let out_traffic = {
+                    name:'出流量',
+                    type:'line',
+                    stack: '总量',
+                    data:res["traffic_out"]
+                };
+                this.option.series.push(out_traffic);
+
+                this.setState({option: this.option, loadingChart: false, })
+            }.bind(this)
+        );
+        echarts.setOption(this.state.option);
+    };
+
+    getOptions(){
+        return this.option;
 
     }
 
     render() {
         return (
             <ReactEcharts
+                ref='echarts'
                 option={this.getOptions()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
+                showLoading={this.state.loadingChart}
+                lazyUpdate={true}
+                notMerge={true}
             />
         )
     }
