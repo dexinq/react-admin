@@ -4,9 +4,10 @@ import $ from 'jquery';
 
 
 class UcarTopTalkers extends Component {
-    constructor(props) {
-        super(props);
 
+    state = {};
+
+    componentDidMount(){
         let option = {
             tooltip: {
                 trigger: 'item',
@@ -33,9 +34,6 @@ class UcarTopTalkers extends Component {
             }
         };
         this.setState({option: option})
-    }
-
-    componentDidMount(){
         $.get(
             "/api/get_top_talker",
             function (r) {
