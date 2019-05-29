@@ -67,6 +67,7 @@ class UcarTopTalkers extends Component {
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
                 showLoading={this.state.loadingChart}
+                lazyUpdate={true}
                 notMerge={true}
             />
         )
