@@ -7,7 +7,7 @@ class UcarTopTalkers extends Component {
     constructor(props) {
         super(props);
 
-        this.option = {
+        let option = {
             tooltip: {
                 trigger: 'item',
                 triggerOn: 'mousemove'
@@ -31,8 +31,8 @@ class UcarTopTalkers extends Component {
                     }
                 }
             }
-        }
-        this.setState({option: this.option})
+        };
+        this.setState({option: option})
     }
 
     componentDidMount(){
