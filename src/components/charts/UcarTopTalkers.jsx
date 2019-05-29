@@ -5,18 +5,26 @@ import $ from 'jquery';
 
 class UcarTopTalkers extends Component {
 
-    state = {};
 
+    constructor(props){
+        super(props);
+        this.state={
+            loadingChart:true,
+            data:[],
+            links:[]
+        }
+    }
     componentDidMount(){
 
         $.get(
             "/api/get_top_talker",
             function (r) {
-                let res = eval(r);
+                let res = JSON.parse(r);
                 this.setState({data: res["data"]});
                 this.setState({links: res["links"]});
-            }
-        ).bind(this)
+                this.setState({loadingChart: false});
+            }.bind(this)
+        )
 
     };
 
@@ -54,6 +62,7 @@ class UcarTopTalkers extends Component {
                 option={this.getOption()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
+                showLoading={this.state.loadingChart}
             />
         )
     }
