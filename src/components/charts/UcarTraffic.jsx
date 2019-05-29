@@ -6,6 +6,8 @@ import $ from 'jquery';
 class UcarTraffic extends Component {
     constructor(props) {
         super(props);
+        this.hostname = props.hostname;
+        this.ip = props.ip;
         this.option = {
             tooltip: {
                 trigger: 'axis',

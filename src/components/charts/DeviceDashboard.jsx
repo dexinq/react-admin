@@ -48,7 +48,7 @@ class UcarDeviceDashboard extends React.Component {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card title="上行端口流量" bordered={false}>
-                                <UcarTraffic />
+                                <UcarTraffic hostname={this.hostname} ip={this.ip}/>
                             </Card>
                         </div>
                     </Col>
@@ -72,7 +72,7 @@ class UcarDeviceDashboard extends React.Component {
 
 
             </div>
-        )
+        ).bind(this)
     }
 }
 
