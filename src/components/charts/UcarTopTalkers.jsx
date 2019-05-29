@@ -8,7 +8,20 @@ class UcarTopTalkers extends Component {
     state = {};
 
     componentDidMount(){
-        let option = {
+
+        $.get(
+            "/api/get_top_talker",
+            function (r) {
+                let res = eval(r);
+                this.setState({data: res["data"]});
+                this.setState({links: res["links"]});
+            }
+        ).bind(this)
+
+    };
+
+    getOption=()=>{
+        return{
             tooltip: {
                 trigger: 'item',
                 triggerOn: 'mousemove'
@@ -17,8 +30,8 @@ class UcarTopTalkers extends Component {
                 type: 'sankey',
                 layout: 'none',
                 focusNodeAdjacency: 'allEdges',
-                data: [],
-                links: [],
+                data: this.state.data,
+                links: this.state.links,
                 itemStyle: {
                     normal: {
                         borderWidth: 1,
@@ -32,24 +45,13 @@ class UcarTopTalkers extends Component {
                     }
                 }
             }
-        };
-        this.setState({option: option})
-        $.get(
-            "/api/get_top_talker",
-            function (r) {
-                let res = eval(r);
-                this.option.series.data = res["data"];
-                this.option.series.links = res["links"];
-                this.setState({option: this.option})
-            }
-        ).bind(this)
-
+        }
     };
 
     render() {
         return (
             <ReactEcharts
-                option={this.state.option}
+                option={this.getOption()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
             />
