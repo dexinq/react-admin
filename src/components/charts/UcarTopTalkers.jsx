@@ -47,6 +47,7 @@ class UcarTopTalkers extends Component {
                 let data = JSON.parse(res);
                 this.option.series.data = data.data;
                 this.option.series.links = data.links;
+                console.info(this.option);
                 this.setState({loadingChart: false});
                 this.setState({option:this.option});
             }.bind(this)
@@ -66,7 +67,7 @@ class UcarTopTalkers extends Component {
                 option={this.getOption()}
                 style={{height: '300px',width:'100%'}}
                 className={'react_for_echarts'}
-                showLoading={this.state.loadingChart}
+                showLoading={false}
                 lazyUpdate={true}
                 notMerge={true}
             />

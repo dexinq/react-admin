@@ -48,6 +48,7 @@ class UcarTrafficComposit extends Component {
                 let data = JSON.parse(r);
                 this.option.legend.data = data["legend_list"];
                 this.option.series.data = data["data"];
+                console.info(this.option);
                 this.setState({loadingChart: false});
                 this.setState({option:this.option});
             }.bind(this)
