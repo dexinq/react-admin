@@ -62,7 +62,6 @@ class UcarDashboard extends React.Component {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card title="总流量" bordered={false}>
-                                <UcarTraffic />
                             </Card>
                         </div>
                     </Col>
