@@ -21,15 +21,7 @@ class UcarDeviceDashboard extends React.Component {
     };
 
     componentDidMount(){
-        $.get(
-            "/api/get_real_device_info?hostname="+this.hostname+"&ip="+this.ip,
-            function(r){
 
-                let res = eval(r);
-
-                this.setState({data:res, loading: false})
-            }.bind(this)
-        );
     };
 
     render() {
@@ -72,7 +64,7 @@ class UcarDeviceDashboard extends React.Component {
 
 
             </div>
-        ).bind(this)
+        )
     }
 }
 
